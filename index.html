@@ -6,7 +6,7 @@
     <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
     <!-- Animation library-->
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
   </head>
   <body>
     <!-- Un poco de audio, que a veces no anda-->
@@ -24,7 +24,7 @@
     -->
 
     <a-scene
-      mindar-image="imageTargetSrc: /assets/targets.mind"
+      mindar-image="imageTargetSrc: ./assets/targets.mind"
       vr-mode-ui="enabled: false"
       device-orientation-permission-ui="enabled: false"
     >
@@ -34,14 +34,14 @@
         -->
         <img
           id="card"
-          src="/assets/target.jpeg"
+          src="./assets/target.jpeg"
         />
         <!-- 3D model
         https://cdn.glitch.global/edf7a8d8-e77a-4493-a79d-1c60ca38149a/pato-dancing.glb?v=1644234555807
         -->
         <a-asset-item
           id="avatarModel"
-          src="/assets/asset.glb"
+          src="./assets/asset.glb"
         ></a-asset-item>
       </a-assets>
 
