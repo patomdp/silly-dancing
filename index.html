@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image.prod.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.0.0/dist/mindar-image-aframe.prod.js"></script>
+    <!-- Animation library-->
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <!-- Un poco de audio, que a veces no anda-->
+    <audio id="mySound" autoplay>
+      <source
+        src="https://p.scdn.co/mp3-preview/38fff4e7d039c3bf41f3629c34c618c3e8cf56b4?cid=18fc7b00a64d447393f6ee0dd98a70be"
+        type="audio/mp3"
+      />
+    </audio>
+
+    <!-- Marker compiler -> 
+        https://hiukim.github.io/mind-ar-js-doc/tools/compile/ 
+        Scale 5
+        https://cdn.glitch.global/edf7a8d8-e77a-4493-a79d-1c60ca38149a/targets-pickle.mind?v=1644234703466
+    -->
+
+    <a-scene
+      mindar-image="imageTargetSrc: /assets/targets.mind"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false"
+    >
+      <a-assets>
+        <!-- Trigger 2D  
+            https://cdn.glitch.global/edf7a8d8-e77a-4493-a79d-1c60ca38149a/target.jpeg?v=1644234482257
+        -->
+        <img
+          id="card"
+          src="/assets/target.jpeg"
+        />
+        <!-- 3D model
+        https://cdn.glitch.global/edf7a8d8-e77a-4493-a79d-1c60ca38149a/pato-dancing.glb?v=1644234555807
+        -->
+        <a-asset-item
+          id="avatarModel"
+          src="/assets/asset.glb"
+        ></a-asset-item>
+      </a-assets>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity mindar-image-target="targetIndex: 0">
+        <!-- Se utiliza el Card como plano por debajo de la imagen para reemplazar la tarjeta -->
+        <a-entity
+          light="color: #FAFBD4; intensity: 3.5"
+          position="100 -250 100"
+        ></a-entity>
+        <a-sound
+          src="src: url(https://p.scdn.co/mp3-preview/38fff4e7d039c3bf41f3629c34c618c3e8cf56b4?cid=18fc7b00a64d447393f6ee0dd98a70be)"
+          autoplay="true"
+          position="0 2 5"
+        ></a-sound>
+        <!-- la carta, pero se puede quitar -->
+        <a-plane
+          src="#card"
+          position="0 0 0"
+          height="1.6"
+          width="1"
+          rotation="0 0 0"
+        ></a-plane>
+        <!-- Le acomode la rotacion para que salga parado con respecto a su base -->
+        <a-gltf-model
+          rotation="90 0 0 "
+          position="0 0 0.1"
+          scale="1 1 1"
+          src="#avatarModel"
+          animation-mixer
+        ></a-gltf-model>
+        <!-- <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate"> -->
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
